@@ -1,13 +1,13 @@
 #!/bin/sh
 #
-# soundmodem    Start Soundmodem driver.
+# soundmodem	Start Soundmodem driver.
 #
-# Author:       Thomas Sailer, <sailer@ife.ee.ethz.ch>
+# Author:	Thomas Sailer, <sailer@ife.ee.ethz.ch>
 #
-# chkconfig: 345 50 50
-# description: This script starts/stops the Soundmodem driver
-# processname: soundmodem
-# pidfile: /var/run/soundmodem.pid
+# chkconfig:	345 50 50
+# description:	This script starts/stops the Soundmodem driver
+# processname:	soundmodem
+# pidfile:	/var/run/soundmodem.pid
 
 # Source function library.
 . /etc/rc.d/init.d/functions
@@ -15,32 +15,41 @@
 # Get config.
 . /etc/sysconfig/network
 
+RETVAL=0
 # See how we were called.
 case "$1" in
   start)
-	msg_starting "Soundmodem"
-	daemon /usr/sbin/soundmodem --daemonize
-	RETVAL=$?
-	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/soundmodem
+	# Check if the service is already running?
+	if [ ! -f /var/lock/subsys/lpd ]; then
+		msg_starting "Soundmodem"
+		daemon /usr/sbin/soundmodem --daemonize
+		RETVAL=$?
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/soundmodem
+	else
+		msg_already_running Soundmodem
+	fi
 	;;
   stop)
-	msg_stopping "Soundmodem"
-	killproc soundmodem
-	RETVAL=$?
-	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/soundmodem
+	if [ -f /var/lock/subsys/lpd ]; then
+		msg_stopping "Soundmodem"
+		killproc soundmodem
+		rm -f /var/lock/subsys/soundmodem
+	else
+		msg_not_running Soundmodem
+	fi
 	;;
-  restart|reload)
+  restart|force-reload)
 	$0 stop
 	$0 start
-	RETVAL=$?
-        ;;
+	exit $?
+	;;
   status)
-	status sendmail
-	RETVAL=$?
+	status soundmodem
+	exit $?
 	;;
   *)
-	echo "Usage: soundmodem {start|stop|restart|status}"
-	exit 1
+	msg_usage "$0 {start|stop|restart|force-reload|status}"
+	exit 3
 esac
 
 exit $RETVAL
