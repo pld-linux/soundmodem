@@ -8,6 +8,7 @@ Group:		Networking
 Source0:	http://www.baycom.org/~tom/ham/soundmodem/%{name}-%{version}.tar.gz
 # Source0-md5:	33026c681f238f81f7657edc7d46e68a
 Source1:	%{name}.init
+URL:		http://www.baycom.org/~tom/ham/soundmodem/
 BuildRequires:	audiofile-devel
 BuildRequires:	automake
 BuildRequires:	gtk+-devel
@@ -41,7 +42,7 @@ Graficzny interfejs u¿ytkownika dla soundmodemu.
 %setup -q
 
 %build
-install %{_datadir}/automake/config.* .
+install /usr/share/automake/config.* .
 %configure2_13 \
 %ifarch i686 athlon
 	--enable-mmx \
@@ -87,7 +88,7 @@ fi
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man?/soundmodem.*
 %attr(754,root,root) %{_initrddir}/%{name}
-%config(noreplace) %verify(not mtime md5 size) %{_sysconfdir}/ax25/soundmodem.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ax25/soundmodem.conf
 
 %files X11
 %defattr(644,root,root,755)
