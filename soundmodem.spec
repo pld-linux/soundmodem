@@ -13,6 +13,9 @@ BuildRequires:	audiofile-devel
 BuildRequires:	automake
 BuildRequires:	gtk+-devel
 BuildRequires:	libxml-devel
+BuildRequires:	rpmbuild(macros) >= 1.268
+Requires(post,preun):	/sbin/chkconfig
+Requires:	rc-scripts
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -30,7 +33,7 @@ Radio.
 Summary:	GUI for soundmodem configuration
 Summary(pl):	Graficzny interfejs do konfiguracji soundmodemu
 Group:		X11/Applications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description X11
 GUI interface for soundmodem.
@@ -68,17 +71,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add %{name}
-if [ -f /var/lock/subsys/%{name} ]; then
-	/etc/rc.d/init.d/%{name} restart 1>&2
-else
-	echo "Type \"/etc/rc.d/init.d/%{name} start\" to start %{name}." 1>&2
-fi
+%service %{name} restart
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/%{name} ]; then
-		/etc/rc.d/init.d/%{name} stop >&2
-fi
+	%service %{name} stop
 	/sbin/chkconfig --del %{name}
 fi
 
