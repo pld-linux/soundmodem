@@ -1,5 +1,5 @@
 Summary:	Driver and diagnostic utility for Usermode SoundModem
-Summary(pl):	Sterownik i narzêdzie diagnostyczne dla SoundModemu w przestrzeni u¿ytkownika
+Summary(pl.UTF-8):   Sterownik i narzÄ™dzie diagnostyczne dla SoundModemu w przestrzeni uÅ¼ytkownika
 Name:		soundmodem
 Version:	0.9
 Release:	1
@@ -23,23 +23,23 @@ This package contains the driver and the diagnostic utility for
 userspace SoundModem. It allows you to use soundcards supported by
 OSS/Free as Amateur Packet Radio modems.
 
-%description -l pl
-Ten pakiet zawiera sterownik i narzêdzie diagnostyczne dla SoundModemu
-dzia³aj±cego w przestrzeni u¿ytkownika. Pozwala u¿ywaæ kart
-d¼wiêkowych obs³ugiwanych przez OSS/Free jako modemy Amateur Packet
+%description -l pl.UTF-8
+Ten pakiet zawiera sterownik i narzÄ™dzie diagnostyczne dla SoundModemu
+dziaÅ‚ajÄ…cego w przestrzeni uÅ¼ytkownika. Pozwala uÅ¼ywaÄ‡ kart
+dÅºwiÄ™kowych obsÅ‚ugiwanych przez OSS/Free jako modemy Amateur Packet
 Radio.
 
 %package X11
 Summary:	GUI for soundmodem configuration
-Summary(pl):	Graficzny interfejs do konfiguracji soundmodemu
+Summary(pl.UTF-8):   Graficzny interfejs do konfiguracji soundmodemu
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 
 %description X11
 GUI interface for soundmodem.
 
-%description X11 -l pl
-Graficzny interfejs u¿ytkownika dla soundmodemu.
+%description X11 -l pl.UTF-8
+Graficzny interfejs uÅ¼ytkownika dla soundmodemu.
 
 %prep
 %setup -q
