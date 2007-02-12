@@ -1,5 +1,5 @@
 Summary:	Driver and diagnostic utility for Usermode SoundModem
-Summary(pl.UTF-8):   Sterownik i narzędzie diagnostyczne dla SoundModemu w przestrzeni użytkownika
+Summary(pl.UTF-8):	Sterownik i narzędzie diagnostyczne dla SoundModemu w przestrzeni użytkownika
 Name:		soundmodem
 Version:	0.9
 Release:	1
@@ -31,7 +31,7 @@ Radio.
 
 %package X11
 Summary:	GUI for soundmodem configuration
-Summary(pl.UTF-8):   Graficzny interfejs do konfiguracji soundmodemu
+Summary(pl.UTF-8):	Graficzny interfejs do konfiguracji soundmodemu
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 
