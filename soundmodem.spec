@@ -1,12 +1,12 @@
 Summary:	Driver and diagnostic utility for Usermode SoundModem
 Summary(pl.UTF-8):	Sterownik i narzędzie diagnostyczne dla SoundModemu w przestrzeni użytkownika
 Name:		soundmodem
-Version:	0.9
+Version:	0.10
 Release:	1
 License:	GPL
 Group:		Networking
 Source0:	http://www.baycom.org/~tom/ham/soundmodem/%{name}-%{version}.tar.gz
-# Source0-md5:	308ff9ba9549e19242be8f047d83d99c
+# Source0-md5:	6bf9acaf19c55e57628a49bdff79c8f9
 Source1:	%{name}.init
 URL:		http://www.baycom.org/~tom/ham/soundmodem/
 BuildRequires:	audiofile-devel
