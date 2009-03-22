@@ -70,12 +70,12 @@ install /usr/share/automake/config.* .
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir}/ax25,%{_initrddir}}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir}/ax25,/etc/rc.d/init.d}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_initrddir}/%{name}
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/%{name}
 touch $RPM_BUILD_ROOT%{_sysconfdir}/ax25/soundmodem.conf
 
 %find_lang %{name}
@@ -98,7 +98,7 @@ fi
 %doc AUTHORS ChangeLog NEWS README newqpsk/README.newqpsk
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man?/soundmodem.*
-%attr(754,root,root) %{_initrddir}/%{name}
+%attr(754,root,root) /etc/rc.d/init.d/%{name}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ax25/soundmodem.conf
 
 %files devel
