@@ -30,16 +30,16 @@ dźwiękowych obsługiwanych przez OSS/Free jako modemy Amateur Packet
 Radio.
 
 %package devel
-Summary:        Header files for soundmodem library
-Summary(pl.UTF-8):      Pliki nagłówkowe biblioteki dla soundmodem
+Summary:        Header files for soundmodem
+Summary(pl.UTF-8):      Pliki nagłówkowe soundmodemu
 Group:          Development/Libraries
-Requires:      %{name} = %{version}-%{release}
+# doesn't require base
 
 %description devel
-Header files for soundmodem library.
+Header files for soundmodem.
 
 %description devel -l pl.UTF-8
-Pliki nagłówkowe biblioteki dla soundmodem.
+Pliki nagłówkowe soundmodemu.
 
 %package X11
 Summary:	GUI for soundmodem configuration
@@ -102,6 +102,7 @@ fi
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ax25/soundmodem.conf
 
 %files devel
+%defattr(644,root,root,755)
 %{_includedir}/modem.h
 %{_includedir}/simd.h
 
